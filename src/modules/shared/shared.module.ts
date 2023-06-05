@@ -9,12 +9,7 @@ import { ImageModel } from '../images/image.model';
 import { CommentModel } from '../comments/comment.model';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 
-export const sequelizeModels = [
-  UserModel,
-  PortfolioModel,
-  ImageModel,
-  CommentModel,
-];
+const sequelizeModels = [UserModel, PortfolioModel, ImageModel, CommentModel];
 
 @Global()
 @Module({

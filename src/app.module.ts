@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { AuthStrategy } from './common/auth/auth.strategy';
+import { AuthStrategy } from './common/auth';
 import { ExceptionFilter } from './common/filters/exception.filter';
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './modules/shared/shared.module';
