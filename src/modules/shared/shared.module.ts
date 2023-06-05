@@ -4,8 +4,17 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { validationSchema } from '../../config/validationSchema';
 
 import { UserModel } from '../users/user.model';
+import { PortfolioModel } from '../portfolios/portfolio.model';
+import { ImageModel } from '../images/image.model';
+import { CommentModel } from '../comments/comment.model';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
-export const sequelizeModels = [UserModel];
+export const sequelizeModels = [
+  UserModel,
+  PortfolioModel,
+  ImageModel,
+  CommentModel,
+];
 
 @Global()
 @Module({
@@ -34,6 +43,7 @@ export const sequelizeModels = [UserModel];
       }),
       inject: [ConfigService],
     }),
+    EventEmitterModule.forRoot(),
   ],
   providers: [Logger],
   exports: [Logger],

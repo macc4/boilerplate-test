@@ -16,6 +16,5 @@ export const validationSchema = Joi.object({
   AWS_ACCESS_KEY_ID: Joi.string().required(),
   AWS_SECRET_ACCESS_KEY: Joi.string().required(),
   AWS_PRESIGNED_URL_EXPIRY_TIME: Joi.number().required(),
-  AWS_IMAGE_BLOCK_BUCKET_NAME: Joi.string().required(),
-  AWS_TEMPLATE_PREVIEW_BUCKET_NAME: Joi.string().required(),
+  AWS_IMAGES_BUCKET_NAME: Joi.string().required(),
 });

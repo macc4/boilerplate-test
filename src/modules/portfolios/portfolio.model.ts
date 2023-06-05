@@ -2,18 +2,20 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   AllowNull,
   AutoIncrement,
+  BelongsTo,
   Column,
   Default,
+  ForeignKey,
   Model,
   PrimaryKey,
   Table,
-  Unique,
 } from 'sequelize-typescript';
+import { UserModel } from '../users/user.model';
 
 @Table({
-  tableName: 'users',
+  tableName: 'portfolios',
 })
-export class UserModel extends Model<UserModel> {
+export class PortfolioModel extends Model<PortfolioModel> {
   @ApiProperty()
   @PrimaryKey
   @AutoIncrement
@@ -21,12 +23,17 @@ export class UserModel extends Model<UserModel> {
   id: number;
 
   @ApiProperty()
-  @Unique
-  @Column
-  username: string;
+  @ForeignKey(() => UserModel)
+  @Column({ field: 'user_id' })
+  userId: number;
 
+  @ApiProperty()
   @Column
-  password: string;
+  name: string;
+
+  @ApiProperty()
+  @Column
+  description: string;
 
   @ApiProperty()
   @Default(() => new Date())
@@ -37,4 +44,7 @@ export class UserModel extends Model<UserModel> {
   @AllowNull
   @Column({ field: 'deleted_at' })
   deletedAt: Date;
+
+  @BelongsTo(() => UserModel)
+  user: UserModel;
 }

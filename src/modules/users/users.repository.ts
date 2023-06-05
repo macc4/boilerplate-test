@@ -8,29 +8,29 @@ import { UserModel } from './user.model';
 export class UsersRepository {
   constructor(
     @InjectModel(UserModel)
-    private readonly userModel: typeof UserModel,
+    private readonly model: typeof UserModel,
   ) {}
 
   async create(
     data: Partial<UserModel>,
     transaction?: Transaction,
   ): Promise<UserModel> {
-    const user = await this.userModel.create(
+    const response = await this.model.create(
       {
         ...data,
       },
       { returning: true, transaction },
     );
 
-    return user;
+    return response;
   }
 
   async findOne(where: Partial<UserModel>): Promise<UserModel> {
-    const user = await this.userModel.findOne({
+    const response = await this.model.findOne({
       where,
     });
 
-    return user;
+    return response;
   }
 
   async updateOne(
@@ -38,12 +38,20 @@ export class UsersRepository {
     where: Partial<UserModel>,
     transaction?: Transaction,
   ): Promise<UserModel> {
-    const updatedRecord = await this.userModel.update(data, {
+    const response = await this.model.update(data, {
       where,
       returning: true,
       transaction,
     });
 
-    return updatedRecord[1][0];
+    return response[1][0];
+  }
+
+  async deleteById(id: number): Promise<number> {
+    const response = await this.model.destroy({
+      where: { id },
+    });
+
+    return response;
   }
 }

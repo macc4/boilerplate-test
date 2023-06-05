@@ -5,9 +5,19 @@ import { ExceptionFilter } from './common/filters/exception.filter';
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { UsersModule } from './modules/users/users.module';
+import { PortfoliosModule } from './modules/portfolios/portfolios.module';
+import { ImagesModule } from './modules/images/images.module';
+import { CommentsModule } from './modules/comments/comments.module';
 
 @Module({
-  imports: [SharedModule, AuthModule, UsersModule],
+  imports: [
+    SharedModule,
+    AuthModule,
+    UsersModule,
+    PortfoliosModule,
+    ImagesModule,
+    CommentsModule,
+  ],
   providers: [
     AuthStrategy,
     {
