@@ -1,4 +1,4 @@
-# lanars-test
+# boilerplate-test
 
 ## Installation:
 
